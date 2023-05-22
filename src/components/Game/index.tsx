@@ -393,13 +393,11 @@ const Game = () => {
  
     useEffect(() => {
         socket.on('bet-result', (data: any) => {
-            console.log('bet-result = ', data);
             setBalance(data.balance);
             addBall(data.difficulty, data.ballId, data.point, data.target)
         })
 
         socket.on('balance', (data) => {
-            console.log('data.balance = ', data.balance)
             setBalance(data.balance);
         })
 
