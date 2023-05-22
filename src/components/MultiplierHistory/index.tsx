@@ -19,7 +19,7 @@ export function MultiplierHistory({
     ColorsPerBet
   } = config
   return (
-    <div className="absolute right-[40px] top-[60px] flex w-16 flex-col gap-[4px] overflow-hidden rounded-md bg-background">
+    <div className="absolute right-[100px] sm:right-[40px] top-[60px] flex w-16 flex-col gap-[4px] overflow-hidden rounded-md bg-background x-multiplier">
       {multiplierHistory.map((multiplier, index) => {
         if (!multiplier || index > 3 || !multiplier.value) return null
         return (

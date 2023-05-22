@@ -20,7 +20,7 @@ import { random } from '../../utils/random'
 import { MultiplierValues, BetType } from '../../@types'
 
 import { BetActions } from '../BetActions'
-import { PlinkoGameBody } from '../GameBody'
+import PlinkoGameBody from '../GameBody'
 import { MultiplierHistory } from '../MultiplierHistory'
 
 import { socket } from '../../socket';
@@ -338,13 +338,6 @@ const Game = () => {
     ])
 
     function bet(key: BetType, betValue: number) {
-        console.log('play-bet = ', {
-            betId: new Date().valueOf(),
-            userId: authUser.id,
-            difficulty: key,
-            betAmount: betValue
-        })
-
         try{
             socket.emit('play-bet', {
                 ballId: new Date().valueOf(),
@@ -417,8 +410,8 @@ const Game = () => {
     }, [])
 
     return (
-        <div className="flex relative h-fit flex-col items-center justify-center gap-[5px] px-[30px] mt-[-40px]">
-            <div className="flex flex-1 items-center justify-center relative">
+        <div className="flex relative md:w-[50%] md:min-w-[430px] max-w-[600px] mx-auto h-fit flex-col items-center justify-center overflow-hidden gap-[5px] px-0 lg:px-[15px] mt-[-40px]">
+            <div className="flex flex-1 items-center justify-center relative x-game-panel">
                 <span className="absolute left-[40px] top-[60px] mx-auto text-xs font-bold text-text md:text-base">
                     *Balls in play {inGameBallsCount}/15
                 </span>

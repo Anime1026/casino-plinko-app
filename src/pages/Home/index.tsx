@@ -24,7 +24,6 @@ const Home = () => {
             console.log(`socket id: ${socketId} connected`);
 
             const token = searchParams.get('cert') || 'test-user';
-            console.log('enter-room = ', token)
             socket.emit('enter-room', {
                 token: token
             })
@@ -43,7 +42,7 @@ const Home = () => {
             setBalance(Number(data.balance));
         });
         
-        socket.on('history', (data) => {
+        socket.on('history', (data: any) => {
             console.log('history = ', data)
             setHistory(prev => {
                 if(prev.length > 19){
@@ -53,16 +52,21 @@ const Home = () => {
             });
         })
 
+        socket.on('refund', (data: any) => {
+            if(data.status)
+                setBalance(data.balance);
+        })
+
         return () => {
             socket.off('connect');
             socket.off('disconnect');
             socket.off('user-info');
-            socket.off('update-info')
+            socket.off('history');
         };
     }, [])
     return (
         <>
-            <div className="flex pt-[20px]">
+            <div className="flex flex-col md:flex-row w-full justify-center items-start sm:items-center md:items-start xl:justify-between pt-[20px] pb-[30px] x-page">
                 <Game />
                 <BetStatus history = {history}/>
             </div>

@@ -33,7 +33,6 @@ export const useAuthStore = create<State>((setState: any, getState: any) => ({
   wallet: walletInitialState,
   isWalletLoading: false,
   setBalance: (balance: number) => {
-    console.log('setBalance = ', balance)
     try {
       setState(
         produce<State>(state => {
