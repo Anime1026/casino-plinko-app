@@ -41,7 +41,8 @@ module.exports = {
         redDisable: '#ba375a',
         oddbg: '#112f21',
         oddText: '#4de35d',
-        whiteDisable: '#7e7e7e'
+        whiteDisable: '#7e7e7e',
+        modalbg: 'rgba(0,0,0,0.5)'
       },
       container: {
         center: true,

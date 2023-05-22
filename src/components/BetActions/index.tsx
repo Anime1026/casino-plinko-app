@@ -125,7 +125,7 @@ export function BetActions({
   }, [autoBet])
 
   return (
-    <div className="relative h-1/2 w-[75%] md:w-full flex-1 pb-[32px] px-[10px] lg:px-[38px] x-bet-action">
+    <div className="relative h-1/2 w-[65%] sm:w-[75%] md:w-full flex-1 pb-[32px] px-[10px] lg:px-[20px] x-bet-action">
       <div className="flex flex-row justify-between gap-[8px]" >
         {
           betActions.map(ele => (
@@ -137,13 +137,13 @@ export function BetActions({
                   </div>
                   <input className="bg-transparent w-[100px] text-[22px] focus:outline-none" type="number" value={betValue[ele]} onChange={(e: any) => handleChangeBetValue(ele, e)} />
                 </div>
-                <div className="flex flex-1 justify-center items-center gap-[4px]">
+                {/* <div className="flex flex-1 justify-center items-center gap-[4px]">
                   <div className="flex items-center justify-center rounded-full bg-purpleDisable w-[20px] h-[20px] p-[2px]">
                     <CurrencyDollarSimple weight="bold" />
                   </div>
                   <span>0.00</span>
-                </div>
-                <div className="flex flex-1 justify-center items-center gap-[4px] text-[18px]">
+                </div> */}
+                <div className="flex flex-1 justify-center items-center gap-[4px] text-[18px] mt-[5px]">
                   <span className="mr-[12px] text-sm font-medium text-text">auto</span>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" value="" checked={auto[ele]} onChange={() => updateAuto(ele)} className="sr-only peer" />

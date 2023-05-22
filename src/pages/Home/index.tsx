@@ -10,6 +10,7 @@ import BetStatus from '../../components/BetStatus';
 import { HistoryType } from '../../@types';
 
 import { socket } from '../../socket';
+import Modal from '../../components/Modal';
 
 const Home = () => {
     const [searchParams] = useSearchParams();
@@ -20,6 +21,17 @@ const Home = () => {
     const isLoading = useAuthStore((state) => state.isLoading);
 
     const [ history, setHistory ] = useState<Array<HistoryType>>([]);
+    const [ isCharge, setIsCharge ] = useState(false);
+    const [ chargLink, setChargeLink ] = useState('#');
+
+    const CreaditModal = () => {
+        return (
+            <div className="w-full rounded-md bg-secondary px-[15px] sm:px-[30px] py-[20px]">
+                <h2 className="text-center text-[28px]">Charge credits</h2>
+                <div className="text-center mt-[20px] text-[18px] mb-[20px]">Please charge your credits by clicking <a className="decoration-blue underline text-blue" href={chargLink}>here</a>.</div>
+          </div>
+        )
+    }
 
     useEffect(() => {
         socket.on('connect', () => {
@@ -36,31 +48,29 @@ const Home = () => {
 
         socket.on('disconnect', () => {
             console.log('socket disconnected')
+            setLoading(true);
         });
 
         socket.on('user-info', (data: any) => {
-            console.log('user-info = ', data)
             setUser({
                 id: data.userId,
                 name: data.username
             });
             setBalance(Number(data.balance));
             setLoading(false);
+            if(Number(data.balance) === 0 && data.link){
+                setChargeLink(data.link);
+                setIsCharge(true);
+            }
         });
         
         socket.on('history', (data: any) => {
-            console.log('history = ', data)
             setHistory(prev => {
                 if(prev.length > 19){
                     prev.pop();
                 }
                 return [data, ...prev]
             });
-        })
-
-        socket.on('refund', (data: any) => {
-            if(data.status)
-                setBalance(data.balance);
         })
 
         return () => {
@@ -74,10 +84,13 @@ const Home = () => {
         <>
             {
                 isLoading ? <Loading /> :
-                <div className="flex flex-col md:flex-row w-full justify-center items-start sm:items-center md:items-start xl:justify-between pt-[20px] pb-[30px] x-page">
-                    <Game />
-                    <BetStatus history = {history}/>
-                </div>
+                <> 
+                    <div className="flex flex-col md:flex-row w-full justify-center items-start sm:items-center md:items-start xl:justify-between pt-[20px] pb-[30px] x-page">
+                        <Game />
+                        <BetStatus history = {history}/>
+                    </div>
+                    { isCharge && <Modal data = {CreaditModal} /> }
+                </>
             }
         </>
     )

@@ -83,13 +83,28 @@
   }
 
   .x-bet-action{
-    margin-left: -30px;
+    margin-left: -60px;
   }
 
   .x-betStatus{
     margin-left: calc(100vw / 4.5);
   }
 }
+
+@media (max-width: 520px) {
+  .x-game-panel{
+    margin-left: -65px;
+  }
+
+  .x-bet-action{
+    margin-left: -110px;
+  }
+
+  .x-betStatus{
+    margin-left: calc(100vw / 7);
+  }
+}
+
 
 @media (max-width: 450px) {
   .x-game-panel{
@@ -100,7 +115,7 @@
   
   .x-bet-action{
     margin-top: -120px;
-    margin-left: -110px;
+    margin-left: -150px;
     transform: scale(0.85);
   }
 
@@ -136,7 +151,7 @@
 
   .x-bet-action{
     margin-top: -150px;
-    margin-left: -150px;
+    margin-left: -190px;
     transform: scale(0.8);
   }
 }
