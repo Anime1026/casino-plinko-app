@@ -12,11 +12,13 @@ interface Wallet {
 }
 
 interface State {
+  isLoading: boolean
   user: User
   wallet: Wallet
   setUser: (user: User) => void
   isWalletLoading: boolean
   setBalance: (balance: number) => void
+  setLoading: (value: boolean) => void
 }
 
 const userInitialState: User = {
@@ -29,6 +31,7 @@ const walletInitialState: Wallet = {
 }
 
 export const useAuthStore = create<State>((setState: any, getState: any) => ({
+  isLoading: false,
   user: userInitialState,
   wallet: walletInitialState,
   isWalletLoading: false,
@@ -56,5 +59,12 @@ export const useAuthStore = create<State>((setState: any, getState: any) => ({
       toast.error('An error occurred while updating user data')
       console.error('setUserError', error)
     }
+  },
+  setLoading: (value: boolean) => {
+    setState(
+      produce<State>(state => {
+        state.isLoading = value;
+      })
+    )
   }
 }))

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useAuthStore } from '../../store/auth'
 
+import { Loading } from '../../components/Loading'
 import Game from '../../components/Game';
 import BetStatus from '../../components/BetStatus';
 
@@ -15,6 +16,8 @@ const Home = () => {
 
     const setUser = useAuthStore(state => state.setUser)
     const setBalance = useAuthStore(state => state.setBalance)
+    const setLoading = useAuthStore(state => state.setLoading)
+    const isLoading = useAuthStore((state) => state.isLoading);
 
     const [ history, setHistory ] = useState<Array<HistoryType>>([]);
 
@@ -27,6 +30,8 @@ const Home = () => {
             socket.emit('enter-room', {
                 token: token
             })
+
+            setLoading(true);
         });
 
         socket.on('disconnect', () => {
@@ -40,6 +45,7 @@ const Home = () => {
                 name: data.username
             });
             setBalance(Number(data.balance));
+            setLoading(false);
         });
         
         socket.on('history', (data: any) => {
@@ -66,10 +72,13 @@ const Home = () => {
     }, [])
     return (
         <>
-            <div className="flex flex-col md:flex-row w-full justify-center items-start sm:items-center md:items-start xl:justify-between pt-[20px] pb-[30px] x-page">
-                <Game />
-                <BetStatus history = {history}/>
-            </div>
+            {
+                isLoading ? <Loading /> :
+                <div className="flex flex-col md:flex-row w-full justify-center items-start sm:items-center md:items-start xl:justify-between pt-[20px] pb-[30px] x-page">
+                    <Game />
+                    <BetStatus history = {history}/>
+                </div>
+            }
         </>
     )
 }
