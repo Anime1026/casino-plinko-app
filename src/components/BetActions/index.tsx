@@ -161,7 +161,7 @@ export function BetActions({
                 <button className="rounded-md bg-primary text-text font-bold px-[25px] py-[3px] x-double-btn" onClick={() => handleDoubleBet(ele)}>2<span>x</span></button>
               </div>
               <button
-                onClick={() => handleRunBet(ele, auto.easy)}
+                onClick={() => handleRunBet(ele, auto[ele])}
                 disabled={false}
                 className={classNames("relative block h-[50px] mt-[10px] rounded-md px-[8px] py-[16px] text-sm font-bold leading-none text-background transition-colors",
                   {"bg-blueGrey": ele === 'easy', "bg-greenGrey": ele === 'medium', "bg-redGrey": ele === 'diff'}
