@@ -126,7 +126,6 @@ const Game = () => {
     }
 
     function addInGameBall() {
-        // if (inGameBallsCount > 15) return
         incrementInGameBallsCount()
     }
 
@@ -410,9 +409,9 @@ const Game = () => {
     return (
         <div className="flex relative md:w-[50%] md:min-w-[430px] max-w-[600px] mx-auto h-fit flex-col items-center justify-center overflow-hidden gap-[5px] px-0 lg:px-[15px] mt-[-40px]">
             <div className="flex flex-1 items-center justify-center relative x-game-panel">
-                <span className="absolute left-[40px] top-[60px] mx-auto text-xs font-bold text-text md:text-base">
+                {/* <span className="absolute left-[40px] top-[60px] mx-auto text-xs font-bold text-text md:text-base">
                     *Balls in play {inGameBallsCount}/15
-                </span>
+                </span> */}
                 <PlinkoGameBody />
             </div>
             <BetActions

@@ -86,7 +86,7 @@ export function BetActions({
       updateAutoBet(key);
     }
 
-    if (inGameBallsCount >= 15 || Number(betValue[key]) < 0) return
+    if (Number(betValue[key]) < 0) return
 
     if (Number(betValue[autoBet.betType]) > currentBalance) {
       updateBetValue(autoBet.betType, currentBalance.toString())
@@ -99,7 +99,6 @@ export function BetActions({
   useEffect(() => {
     if(autoBet.auto){
       autoIntervalRef.current = setInterval(() => {
-        if (inGameBallsCount >= 15) return
         if (Number(betValue[autoBet.betType]) > currentBalance) {
           updateBetValue(autoBet.betType, currentBalance.toString())
           return

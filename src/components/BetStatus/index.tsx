@@ -14,7 +14,7 @@ const BetStatus = ({ history } : PropsType) => {
                 <div className="w-[20%] lg:w-[30%] max-w-[120px] lg:max-w-[120px]">Odds</div>
                 <div className="w-[30%] max-w-[120px] lg:max-w-[120px] text-right">Bet&nbsp;Amount</div>
             </div>
-            <div className="overflow-auto w-full max-h-[500px] max-w-[400px] sm:max-h-[700px] lg:max-h-[800px] mr-[-20px] pr-[10px]">
+            <div className="overflow-auto w-full max-h-[500px] max-w-[400px] sm:max-h-[700px] lg:max-h-[740px] mr-[-20px] pr-[10px]">
                 {
 
                     history.length > 0 ? history.map((ele: HistoryType, ind: number) => (
