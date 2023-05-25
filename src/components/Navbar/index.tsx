@@ -32,9 +32,9 @@ export function Navbar() {
   }
 
   const runRefund = () => {
-    // socket.emit('refund', {
-    //   userId: authUser.id
-    // })
+    socket.emit('refund', {
+      userId: authUser.id
+    })
 
     setIsRefunding(true);
   }
