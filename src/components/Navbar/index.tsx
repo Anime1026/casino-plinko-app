@@ -21,10 +21,10 @@ export function Navbar() {
   const authUser = useAuthStore((state: any) => state.user);
   const [ isModal, setIsModal ] = useState(false);
   const [ isRefunding, setIsRefunding] = useState(false);
+  const [ isTest, setIsTest ] = useState(false);
 
   const onRefund = () => {
     if(!inGameBallsCount){
-      if(authUser.id.includes('test' && authUser.name.includes('test'))) return;
       if(currentBalance !== 0){
         setIsModal(true)
       }
@@ -32,9 +32,9 @@ export function Navbar() {
   }
 
   const runRefund = () => {
-    socket.emit('refund', {
-      userId: authUser.id
-    })
+    // socket.emit('refund', {
+    //   userId: authUser.id
+    // })
 
     setIsRefunding(true);
   }
@@ -43,14 +43,22 @@ export function Navbar() {
     return (
       <div className="w-full rounded-md bg-secondary px-[15px] sm:px-[30px] py-[20px]">
         <h2 className="text-center text-[28px]">Refund credits</h2>
-        <div className="text-center mt-[20px] text-[18px]">{ isRefunding ? <Loading/> : <>Balance: <span className=" font-bold text-black text-[22px]">${currentBalance.toFixed(2)}</span></>}</div>
+        <div className="text-center mt-[20px] text-[18px]">{ isRefunding ? <Loading/> : <>Balance: <span className=" font-bold text-purple text-[22px]">${currentBalance.toFixed(2)}</span></>}</div>
         <div className="text-center mt-[30px]">
           <button className="mx-[10px] sm:mx-[20px] px-[30px] py-0 text-[18px] font-bold rounded-sm bg-white text-purple active:translate-y-[2px]" onClick = {runRefund}>Yes</button>
-          <button className="mx-[10px] sm:mx-[20px] px-[35px] py-0 text-[18px] font-bold rounded-sm bg-white text-black active:translate-y-[2px]" onClick = {() => { setIsModal(false) }}>No</button>
+          <button className="mx-[10px] sm:mx-[20px] px-[35px] py-0 text-[18px] font-bold rounded-sm bg-white text-black active:translate-y-[2px]" onClick = {() => { setIsModal(false); setIsRefunding(false); }}>No</button>
         </div>
       </div>
     )
   }
+
+  useEffect(() => {
+    if(authUser.id.includes('test' && authUser.name.includes('test'))){
+      setIsTest(true);
+    } else {
+      setIsTest(false);
+    }
+  }, [authUser])
 
   useEffect(() => {
     socket.on('refund', (data: any) => {
@@ -59,6 +67,7 @@ export function Navbar() {
       }
         
       setIsRefunding(false);
+      window.location.href = 'http://annie.ihk.vipnps.vip/iGaming-web';
       setIsModal(false);
     })
 
@@ -79,7 +88,7 @@ export function Navbar() {
             <img src={logo} alt="logo" style={{height: '60px'}} />
           </Link>
           <div className="flex items-center justify-center gap-[4px] font-bold uppercase text-white md:text-lg x-nav">
-            <button className="relative mr-[5px] sm:mr-[20px] flex items-center gap-[2px] text-[35px] text-purple hover:text-fuchsia-400" onClick={onRefund}><BiWalletAlt/><span className="text-[16px] sm:text-[20px] text-text">Refund</span></button>
+            <button className="relative mr-[5px] sm:mr-[20px] flex items-center gap-[2px] text-[35px] text-purple hover:text-fuchsia-400" onClick={onRefund}>{!!inGameBallsCount ? <Loading size={30}/> : <BiWalletAlt/>}<span className="text-[16px] sm:text-[20px] text-text flex items-center">Refund</span></button>
             <span className="w-[30px] h-[30px] rounded-full bg-purpleDark p-[4px] text-[24px] flex items-center justify-center">
               <CurrencyDollarSimple weight="bold" />
             </span>

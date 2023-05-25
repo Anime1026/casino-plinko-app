@@ -1,9 +1,13 @@
 import { CircleNotch } from 'phosphor-react'
 
-export function Loading() {
+interface PropsType {
+  size?: number | null
+}
+
+export function Loading({ size }: PropsType) {
   return (
-    <div className="flex h-full w-full items-center justify-center text-text">
-      <CircleNotch className="animate-spin" size="50" weight="bold" />
+    <div className="flex h-full w-full items-center justify-center text-purple">
+      <CircleNotch className="animate-spin" size={size || 50} weight="bold" />
     </div>
   )
 }

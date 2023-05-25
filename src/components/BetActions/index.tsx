@@ -125,7 +125,7 @@ export function BetActions({
   }, [autoBet])
 
   return (
-    <div className="relative h-1/2 w-[65%] sm:w-[75%] md:w-full flex-1 pb-[32px] px-[10px] lg:px-[20px] x-bet-action">
+    <div className="relative h-1/2 min-w-[396px] w-[65%] sm:w-[75%] md:w-full flex-1 pb-[32px] px-[10px] lg:px-[20px] x-bet-action">
       <div className="flex flex-row justify-between gap-[8px]" >
         {
           betActions.map(ele => (
