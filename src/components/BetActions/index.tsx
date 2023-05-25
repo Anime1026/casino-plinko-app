@@ -88,8 +88,9 @@ export function BetActions({
 
     if (Number(betValue[key]) < 0) return
 
-    if (Number(betValue[autoBet.betType]) > currentBalance) {
-      updateBetValue(autoBet.betType, currentBalance.toString())
+    if (Number(betValue[key]) > currentBalance) {
+      updateBetValue(key, currentBalance.toString())
+      onRunBet(key, currentBalance)
       return
     }
 
