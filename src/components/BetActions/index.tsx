@@ -19,9 +19,9 @@ export function BetActions({
   const autoIntervalRef = useRef<any>(null);
 
   const [betValue, setBetValue] = useState({
-    easy: '0.00',
-    medium: '0.00',
-    diff: '0.00'
+    easy: '1000',
+    medium: '1000',
+    diff: '1000'
   })
   const [auto, setAuto] = useState<{ [key: string]: boolean }>({
     easy: false,
@@ -80,7 +80,7 @@ export function BetActions({
   }
 
   async function handleRunBet(key: BetType, isAuto: boolean) {
-    if(autoBet.auto && autoBet.betType !== key) return
+    // if(autoBet.auto && autoBet.betType !== key) return
 
     if(isAuto){
       updateAutoBet(key);
