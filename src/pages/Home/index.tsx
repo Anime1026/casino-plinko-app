@@ -28,7 +28,7 @@ const Home = () => {
         return (
             <div className="w-full rounded-md bg-secondary px-[15px] sm:px-[30px] py-[20px]">
                 <h2 className="text-center text-[28px]">Charge credits</h2>
-                <div className="text-center mt-[20px] text-[18px] mb-[20px]">Please charge your credits by clicking <a className="decoration-blue underline text-blue" href={chargLink}>here</a>.</div>
+                <div className="text-center mt-[20px] text-[18px] mb-[20px]">Please charge your credits by clicking <a className="decoration-blue underline text-blue" href={chargLink ? chargLink : 'http://annie.ihk.vipnps.vip/iGaming-web/'}>here</a>.</div>
           </div>
         )
     }
@@ -52,15 +52,20 @@ const Home = () => {
         });
 
         socket.on('user-info', (data: any) => {
+            console.log('user-info = ', data);
             setUser({
                 id: data.userId,
                 name: data.username
             });
             setBalance(Number(data.balance));
             setLoading(false);
-            if(Number(data.balance) === 0 && data.link){
+            if(Number(data.balance) === 0){
                 setChargeLink(data.link);
                 setIsCharge(true);
+            }
+            
+            if(!data.status) {
+                window.alert('Server Error!');
             }
         });
         

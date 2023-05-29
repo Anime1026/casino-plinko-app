@@ -19,9 +19,9 @@ export function BetActions({
   const autoIntervalRef = useRef<any>(null);
 
   const [betValue, setBetValue] = useState({
-    easy: '1000',
-    medium: '1000',
-    diff: '1000'
+    easy: '10.00',
+    medium: '10.00',
+    diff: '10.00'
   })
   const [auto, setAuto] = useState<{ [key: string]: boolean }>({
     easy: false,
