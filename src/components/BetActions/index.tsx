@@ -1,6 +1,7 @@
 import { ChangeEvent, useState, useRef, useEffect } from 'react'
 import { CurrencyInr } from 'phosphor-react'
 import classNames from 'classnames'
+import { toast } from 'react-toastify'
 
 import { useAuthStore } from '../../store/auth'
 
@@ -86,7 +87,10 @@ export function BetActions({
       updateAutoBet(key);
     }
 
-    if (Number(betValue[key]) < 0) return
+    if (Number(betValue[key]) < 10) {
+      toast.warn('Minimum bet amount is 10.00');
+      return;
+    } 
 
     if (Number(betValue[key]) > currentBalance) {
       updateBetValue(key, currentBalance.toString())
