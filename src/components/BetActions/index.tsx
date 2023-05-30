@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, useRef, useEffect } from 'react'
-import { CurrencyDollarSimple } from 'phosphor-react'
+import { CurrencyInr } from 'phosphor-react'
 import classNames from 'classnames'
 
 import { useAuthStore } from '../../store/auth'
@@ -133,7 +133,7 @@ export function BetActions({
               <div className={classNames("flex h-full flex-col items-stretch w-full rounded-md bg-primary p-[10px] text-sm font-bold md:text-base", {"text-text": !autoBet.auto, "text-whiteDisable": autoBet.auto})} >
                 <div className="relative flex justify-start items-center pl-[40%]">
                   <div className="absolute left-[50%] translate-x-[-45px] flex items-center justify-center rounded-full bg-purpleDark w-[25px] h-[25px] p-[2px] text-[24px]">
-                    <CurrencyDollarSimple weight="bold" />
+                    <CurrencyInr weight="bold" />
                   </div>
                   <input className="bg-transparent w-[100px] text-[22px] focus:outline-none" type="number" value={betValue[ele]} onChange={(e: any) => handleChangeBetValue(ele, e)} />
                 </div>
