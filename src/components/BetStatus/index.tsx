@@ -22,7 +22,7 @@ const BetStatus = ({ history } : PropsType) => {
                         <div key={ind} className="flex flex-row justify-start gap-[20px] md:gap-0 sm:justify-center md:justify-start w-full mt-[15px] text-[18px] text-text border-b-[1px] border-b-slate-700">
                             <div className="w-[30%] max-w-[150px] lg:max-w-[150px]">{ele.username}</div>
                             <div className="w-[20%] lg:w-[40%] max-w-[120px] lg:max-w-[120px]"><span className={classNames("bg-oddbg w-[50px] block text-center rounded-md px-[10px] font-bold text-[16px]", {"text-oddText": ele.odds >= 1, "text-red": ele.odds < 1})}>{ele.odds}</span></div>
-                            <div className="w-[25%] lg:w-[20%] max-w-[120px] lg:max-w-[120px]">₹<span className="text-oddText font-medium pl-[2px]">{ele.betAmount}</span></div>
+                            <div className="w-[25%] lg:w-[20%] max-w-[120px] lg:max-w-[120px]">₹<span className="text-oddText font-medium pl-[2px]">{(ele.betAmount).toFixed(2)}</span></div>
                             <div className="w-[25%] lg:w-[20%] max-w-[120px] lg:max-w-[120px] text-left">₹<span className="text-oddText font-medium pl-[2px]">{(ele.betAmount * Number(ele.odds)).toFixed(2)}</span></div>
                         </div>
                     )) :
