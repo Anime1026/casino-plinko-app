@@ -67,7 +67,7 @@ export function Navbar() {
       }
         
       setIsRefunding(false);
-      window.location.href = 'http://annie.ihk.vipnps.vip/iGaming-web';
+      window.location.href = 'https://induswin.com/#/';
       setIsModal(false);
     })
 
