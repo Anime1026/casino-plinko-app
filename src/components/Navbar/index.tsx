@@ -25,7 +25,7 @@ export function Navbar() {
 
   const onRefund = () => {
     if(!inGameBallsCount){
-      if(currentBalance === 0){
+      if(currentBalance !== 0){
         setIsModal(true)
       }
     }
