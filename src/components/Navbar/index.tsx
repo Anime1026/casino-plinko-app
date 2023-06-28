@@ -42,7 +42,7 @@ export function Navbar() {
   const refundModal = () => {
     return (
       <div className="w-full rounded-md bg-secondary px-[15px] sm:px-[30px] py-[20px]">
-        <h2 className="text-center text-[28px]">Refund credits</h2>
+        <h2 className="text-center text-[28px]">Reback credits</h2>
         <div className="text-center mt-[20px] text-[18px]">{isRefunding ? <Loading /> : <>If you click 'YES', you will return to the home page</>}</div>
         <div className="text-center mt-[30px]">
           <button className="mx-[10px] sm:mx-[20px] px-[30px] py-0 text-[18px] font-bold rounded-sm bg-white text-purple active:translate-y-[2px]" onClick = {runRefund}>Yes</button>
