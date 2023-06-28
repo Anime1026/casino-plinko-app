@@ -25,7 +25,7 @@ export function Navbar() {
 
   const onRefund = () => {
     if(!inGameBallsCount){
-      if(currentBalance !== 0){
+      if(currentBalance === 0){
         setIsModal(true)
       }
     }
@@ -88,7 +88,7 @@ export function Navbar() {
             <img src={logo} alt="logo" style={{height: '60px'}} />
           </Link>
           <div className="flex items-center justify-center gap-[4px] font-bold uppercase text-white md:text-lg x-nav">
-            <button className="relative mr-[5px] sm:mr-[20px] flex items-center gap-[2px] text-[35px] text-purple hover:text-fuchsia-400" onClick={onRefund}>{!!inGameBallsCount ? <Loading size={30}/> : <BiWalletAlt/>}<span className="text-[16px] sm:text-[20px] text-text flex items-center">Refund</span></button>
+            <button className="relative mr-[5px] sm:mr-[20px] flex items-center gap-[2px] text-[35px] text-purple hover:text-fuchsia-400" onClick={onRefund}>{!!inGameBallsCount ? <Loading size={30} /> : ""}<span className="text-[16px] sm:text-[20px] text-text flex items-center">Reback</span></button>
             <span className="w-[30px] h-[30px] rounded-full bg-purpleDark p-[4px] text-[24px] flex items-center justify-center">
               <CurrencyInr weight="bold" />
             </span>
